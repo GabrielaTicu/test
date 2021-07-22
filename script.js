@@ -1,30 +1,5 @@
-function createRequest ()
-{
-	var request = null;
-	try
-	{
-		request = new XMLHttpRequest ();
-	}
-	catch (e)
-	{
-		try
-		{
-			request = new ActiveXObject ("Microsoft.XMLHTTP");
-		}
-		catch (e) {}
-	}
-	return request;
-}
+var fs = require('fs');
 
-function getFile (name)
-{
+var data = fs.readFileSync('data.txt', 'utf-8');
 
-	var req = createRequest ();
-	req.open('GET', name, false);
-//	req.overrideMimeType('text/plain; charset=windows-1251');
-	req.send(null);
-	document.getElementById ('mytext').firstChild.data = req.responseText;
-
-}
-
-window.onload = getFile('data.txt');
+document.getElementById('mytext').value = data
